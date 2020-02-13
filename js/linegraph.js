@@ -52,7 +52,7 @@ d3.csv('data/gapminder.csv').then((data) => {
         // difference between data and datum:
         // https://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data
         .datum(data)
-        .attr("d", line)
+        .attr("d", function(d) { return line(d) })
         .attr("fill", "steelblue")
         .attr("stroke", "steelblue")
 
@@ -62,27 +62,27 @@ d3.csv('data/gapminder.csv').then((data) => {
         .style('opacity', 0)
     
     // append dots to svg to track data points
-    svg.selectAll('.dot').data(data)
-        .enter()
-        .append('circle')
-            .attr('cx', d => xScale(d['year']))
-            .attr('cy', d => yScale(d['life_expectancy']))
-            .attr('r', 4)
-            .attr('fill', 'steelblue')
-            .on("mouseover", function(d) {
-                div.transition()
-                    .duration(200)
-                    .style('opacity', 0.9)
+    // svg.selectAll('.dot').data(data)
+    //     .enter()
+    //     .append('circle')
+    //         .attr('cx', d => xScale(d['year']))
+    //         .attr('cy', d => yScale(d['life_expectancy']))
+    //         .attr('r', 4)
+    //         .attr('fill', 'steelblue')
+    //         .on("mouseover", function(d) {
+    //             div.transition()
+    //                 .duration(200)
+    //                 .style('opacity', 0.9)
 
-                div.html(d['life_expectancy'] + "<br/>" + d['year'])
-                    .style('left', d3.event.pageX + "px")
-                    .style('top', (d3.event.pageY - 28) + "px")
-            })
-            .on("mouseout", function(d) {
-                div.transition()
-                    .duration(300)
-                    .style('opacity', 0)
-            })
+    //             div.html(d['life_expectancy'] + "<br/>" + d['year'])
+    //                 .style('left', d3.event.pageX + "px")
+    //                 .style('top', (d3.event.pageY - 28) + "px")
+    //         })
+    //         .on("mouseout", function(d) {
+    //             div.transition()
+    //                 .duration(300)
+    //                 .style('opacity', 0)
+    //         })
     
 
 })
