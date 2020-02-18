@@ -22,11 +22,14 @@ path {
     shape-rendering: crispEdges;
 }
 
+/*
+change width to 800px and height to 600px
+*/
 div.tooltip {
     position: absolute;
     text-align: center;
     width: 120px;
-    height: 28px;
+    height: 50px;
     padding: 2px;
     font: 12px sans-serif;
     border: 0px;
